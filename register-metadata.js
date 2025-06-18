@@ -58,7 +58,7 @@ const [metadataPDA] = PublicKey.findProgramAddressSync(
           sellerFeeBasisPoints: 0,
           creators: [
             {
-              address: "46Kk42EDRCJFPC4kygRiA62QSyrR8zmDp6UfEzFqsKEB",,
+              address: "46Kk42EDRCJFPC4kygRiA62QSyrR8zmDp6UfEzFqsKEB",
               verified: true,
               share: 100,
             },
