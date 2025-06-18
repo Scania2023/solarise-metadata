@@ -1,0 +1,21 @@
+{
+  "name": "Solarise",
+  "symbol": "SLRS",
+  "description": "A memecoin Solarise na blockchain Solana ☀️🚀. Feita para brilhar e crescer com a força da comunidade.",
+  "image": "https://i.imgur.com/eY0CfnW.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "https://i.imgur.com/eY0CfnW.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "CU68aFbnwep54ZgixM8Ffs6SjCyqsPGoTeoeJhPrt9vM",
+        "share": 100
+      }
+    ]
+  }
+}
