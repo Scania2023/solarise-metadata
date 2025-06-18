@@ -13,18 +13,21 @@ const {
 
 const fs = require('fs');
 
+// ✅ Conexão
 const connection = new Connection(clusterApiUrl('mainnet-beta'));
 
+// ✅ Sua Wallet
 const wallet = Keypair.fromSecretKey(
   Uint8Array.from(JSON.parse(fs.readFileSync('/root/.config/solana/id.json')))
 );
 
+// ✅ Mint Address do Token
 const mint = new PublicKey('CU68aFbnwep54ZgixM8Ffs6SjCyqsPGoTeoeJhPrt9vM');
 
-const metadataProgramId = new PublicKey(
-  'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
-);
+// ✅ Programa de Metadados da Metaplex
+const metadataProgramId = new PublicKey('metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s');
 
+// ✅ PDA do Metadados
 const [metadataPDA] = PublicKey.findProgramAddressSync(
   [
     Buffer.from('metadata'),
@@ -34,6 +37,7 @@ const [metadataPDA] = PublicKey.findProgramAddressSync(
   metadataProgramId
 );
 
+// ✅ Criar e enviar a transação
 (async () => {
   const tx = new Transaction().add(
     createCreateMetadataAccountV3Instruction(
@@ -42,32 +46,32 @@ const [metadataPDA] = PublicKey.findProgramAddressSync(
         mint: mint,
         mintAuthority: wallet.publicKey,
         payer: wallet.publicKey,
-        updateAuthority: wallet.publicKey
+        updateAuthority: wallet.publicKey,
       },
       {
         createMetadataAccountArgsV3: {
           data: {
             name: 'Solarise',
             symbol: 'SLRS',
-            uri: 'https://raw.githubusercontent.com/SEU_REPOSITORIO/solarise/main/solarise.json',
+            uri: 'https://raw.githubusercontent.com/Scania2023/solarise-metadata/main/solarise.json',
             sellerFeeBasisPoints: 0,
             creators: [
               {
                 address: wallet.publicKey.toBase58(),
                 verified: true,
-                share: 100
-              }
+                share: 100,
+              },
             ],
             collection: null,
-            uses: null
+            uses: null,
           },
-          isMutable: true
-        }
+          isMutable: true,
+        },
       }
     )
   );
 
   const txid = await sendAndConfirmTransaction(connection, tx, [wallet]);
-  console.log('Metadata registrado com sucesso!');
-  console.log('TxID:', txid);
+  console.log('✅ Metadados registrados com sucesso!');
+  console.log('🚀 TxID:', txid);
 })();
