@@ -4,28 +4,32 @@ const {
   Keypair,
   PublicKey,
   Transaction,
-  sendAndConfirmTransaction
+  sendAndConfirmTransaction,
 } = require('@solana/web3.js');
 
 const {
-  createCreateMetadataAccountV3Instruction,
-  PROGRAM_ID
+  createCreateMetadataAccountV2Instruction,
 } = require('@metaplex-foundation/mpl-token-metadata');
 
 const fs = require('fs');
 
-// 🚀 Conexão com a Solana Mainnet
+// 🔗 Conectar na Mainnet
 const connection = new Connection(clusterApiUrl('mainnet-beta'));
 
-// 🔑 Sua wallet (carregar do arquivo id.json)
+// 🔑 Sua wallet
 const wallet = Keypair.fromSecretKey(
   Uint8Array.from(JSON.parse(fs.readFileSync('/root/.config/solana/id.json')))
 );
 
-// 🪙 Mint Address do seu token
+// 🪙 Mint Address do token
 const mint = new PublicKey('CU68aFbnwep54ZgixM8Ffs6SjCyqsPGoTeoeJhPrt9vM');
 
-// 🔗 Gerar PDA dos Metadados
+// 🔗 Endereço do programa de metadata
+const PROGRAM_ID = new PublicKey(
+  'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
+);
+
+// 🔧 Gerar PDA
 const [metadataPDA] = PublicKey.findProgramAddressSync(
   [
     Buffer.from('metadata'),
@@ -35,10 +39,10 @@ const [metadataPDA] = PublicKey.findProgramAddressSync(
   PROGRAM_ID
 );
 
-// 🎯 Criar e enviar a transação
+// 🚀 Transação
 (async () => {
   const tx = new Transaction().add(
-    createCreateMetadataAccountV3Instruction(
+    createCreateMetadataAccountV2Instruction(
       {
         metadata: metadataPDA,
         mint: mint,
@@ -47,29 +51,27 @@ const [metadataPDA] = PublicKey.findProgramAddressSync(
         updateAuthority: wallet.publicKey,
       },
       {
-        createMetadataAccountArgsV3: {
-          data: {
-            name: 'Solarise',
-            symbol: 'SLRS',
-            uri: 'https://raw.githubusercontent.com/Scania2023/solarise-metadata/main/solarise.json',
-            sellerFeeBasisPoints: 0,
-            creators: [
-              {
-                address: "46Kk42EDRCJFPC4kygRiA62QSyrR8zmDp6UfEzFqsKEB",
-                verified: true,
-                share: 100,
-              },
-            ],
-            collection: null,
-            uses: null,
-          },
-          isMutable: true,
+        data: {
+          name: 'Solarise',
+          symbol: 'SLRS',
+          uri: 'https://raw.githubusercontent.com/Scania2023/solarise-metadata/main/solarise.json',
+          sellerFeeBasisPoints: 0,
+          creators: [
+            {
+              address: "46Kk42EDRCJFPC4kygRiA62QSyrR8zmDp6UfEzFqsKEB",,
+              verified: true,
+              share: 100,
+            },
+          ],
+          collection: null,
+          uses: null,
         },
+        isMutable: true,
       }
     )
   );
 
   const txid = await sendAndConfirmTransaction(connection, tx, [wallet]);
-  console.log('✅ Metadados registrados com sucesso!');
+  console.log('✅ Metadata registrado com sucesso!');
   console.log('🔗 TxID:', txid);
 })();
