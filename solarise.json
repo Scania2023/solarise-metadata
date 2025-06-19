@@ -1,13 +1,21 @@
 {
-  "name": "solarise-metadata",
-  "version": "1.0.0",
-  "type": "commonjs",
-  "main": "register-metadata.js",
-  "scripts": {
-    "start": "node register-metadata.js"
-  },
-  "dependencies": {
-    "@solana/web3.js": "^1.98.2",
-    "@metaplex-foundation/mpl-token-metadata": "^3.4.0"
+  "name": "Solarise",
+  "symbol": "SLRS",
+  "description": "Solarise ($SLRS) é uma memecoin na blockchain da Solana, feita para brilhar com a força da comunidade.",
+  "image": "https://i.imgur.com/eY0CfnW.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "https://i.imgur.com/eY0CfnW.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "46Kk42EDRCJFPC4kygRiA62QSyrR8zmDp6UfEzFqsKEB",
+        "share": 100
+      }
+    ]
   }
 }
