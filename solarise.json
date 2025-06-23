@@ -1,15 +1,8 @@
 {
   "name": "Solarise",
   "symbol": "SLRS",
-  "description": "Solarise ($SLRS) é uma memecoin criada para brilhar na blockchain Solana, levando inovação, diversão e comunidade.",
-  "seller_fee_basis_points": 0,
+  "description": "A memecoin que brilha na blockchain Solana ☀️🚀",
   "image": "https://i.imgur.com/yZg0lDo.png",
-  "attributes": [
-    {
-      "trait_type": "Category",
-      "value": "Meme Token"
-    }
-  ],
   "properties": {
     "files": [
       {
