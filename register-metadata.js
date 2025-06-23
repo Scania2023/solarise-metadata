@@ -19,7 +19,7 @@ const wallet = Keypair.fromSecretKey(
   Uint8Array.from(JSON.parse(fs.readFileSync('/root/.config/solana/id.json')))
 );
 
-const mint = new PublicKey('CU68aFbnwep54ZgixM8Ffs6SjCyqsPGoTeoeJhPrt9vM');
+const mint = new PublicKey('2Ejd2eBp46PmYWLA5CpmHXFrsDEiWkvoNzf2Fadj9689');
 
 const metadataProgramId = new PublicKey(
   'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
